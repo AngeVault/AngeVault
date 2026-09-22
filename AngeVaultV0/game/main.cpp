@@ -71,12 +71,13 @@ int main() {
     game.registry().addComponent<SpriteComponent>(car, ballTex, 1);
     auto& rbCar = game.registry().addComponent<RigidBody2D>(car);
     rbCar.useGravity = false;
-    auto& colCar = game.registry().addComponent<Collider2D>(car, Collider2D::makeBox(sf::Vector2f(5.f, 5.f)));
+    auto& colCar = game.registry().addComponent<Collider2D>(car, Collider2D::makeBox(sf::Vector2f(10.f, 10.f)));
     colCar.restitution = 0.f;
     colCar.offset = { 5.f, 5.f };
     game.registry().addComponent<NameComponent>(car, "carrer qui tourne");
     auto& carBehavior = game.registry().addComponent<Script>(car);
     carBehavior.behavior = std::make_unique<Rotation>();
+
     game.run();
     return 0;
 }

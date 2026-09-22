@@ -11,6 +11,7 @@ struct IComponentPool {
     virtual size_t size() const = 0;
     virtual const std::vector<uint32_t>& denseToEntity() const = 0;
 };
+
 template<typename T>
 class ComponentPool : public IComponentPool {
 public:

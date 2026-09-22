@@ -45,7 +45,7 @@ public:
     PROPERTY(bool, canDoubleJump, true)
     PROPERTY(int, maxAmmo, 10)
     PROPERTY(int, ballId, 1)
-    float keyTimer = 0;
+
 
         void onUpdate(Entity self, Registry& registry, float dt) override 
         {
@@ -99,6 +99,7 @@ public:
     }
 
 private:
-    bool m_jumpHeld = false;
-    int  m_jumpsLeft = 0;
+    bool  m_jumpHeld = false;
+    int   m_jumpsLeft = 0;
+    float keyTimer = 0;
 };
