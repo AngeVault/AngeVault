@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 #include <type_traits>
-#include <SFML/System/Vector2.hpp>
 
 struct PropertyInfo {
     std::string name;
