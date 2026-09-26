@@ -3,6 +3,7 @@
 #include "ecs/registry.h"
 #include "components/rigid_body2d.h"
 #include "components/transform2d.h"
+#include <SFML/System/Vector2.hpp>
 #include <cmath>
 
 class PhysicsSystem : public ISystem {
