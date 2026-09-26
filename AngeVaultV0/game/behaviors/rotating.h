@@ -9,6 +9,7 @@ class Rotation : public IBehavior{
 		auto& t = registry.getComponent<Transform2D>(self);
 		float rotationSpeed = 45.0f;
 		t.setRotation(t.getRotation() + sf::degrees(rotationSpeed * dt));
+
 		return;
 	}
 };

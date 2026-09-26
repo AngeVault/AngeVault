@@ -1,10 +1,16 @@
 #pragma once
 #include <iostream>
 
-struct ScoreNodle {
-	int score;
-	ScoreNodle* next = nullptr;
+struct ProjNodle {
+	int dmg;
+	ProjNodle* next = nullptr;
 };
+
+struct Proj {
+	int nbProj = 0;
+	ProjNodle* begin;
+};
+
 
 void enter()
 {
@@ -13,19 +19,19 @@ void enter()
 	std::cin.get();
 }
 
-void addFront(int score, ScoreNodle*& first)
+void addFront(int score, ProjNodle*& first)
 {
-	ScoreNodle* newNode = new ScoreNodle;
-	newNode->score = score;
+	ProjNodle* newNode = new ProjNodle;
+	newNode->dmg = score;
 	newNode->next = first;
 	first = newNode;
 	std::cout << "score ajoute : " << score << std::endl;
 }
 
-void addBack(int score, ScoreNodle*& first)
+void addBack(int score, ProjNodle*& first)
 {
-	ScoreNodle* newNode = new ScoreNodle;
-	newNode->score = score;
+	ProjNodle* newNode = new ProjNodle;
+	newNode->dmg = score;
 	newNode->next = nullptr;
 	if (first == nullptr)
 	{
@@ -33,7 +39,7 @@ void addBack(int score, ScoreNodle*& first)
 	}
 	else
 	{
-		ScoreNodle* current = first;
+		ProjNodle* current = first;
 		while (current->next != nullptr)
 		{
 			current = current->next;
@@ -43,10 +49,10 @@ void addBack(int score, ScoreNodle*& first)
 	std::cout << "score ajoute : " << score << std::endl;
 }
 
-void size(ScoreNodle*& first)
+void size(ProjNodle*& first)
 {
 	int count = 0;
-	ScoreNodle* current = first;
+	ProjNodle* current = first;
 	while (current != nullptr)
 	{
 		count++;
@@ -55,20 +61,20 @@ void size(ScoreNodle*& first)
 	std::cout << "taille de la liste : " << count << std::endl;
 }
 
-int findBestScore(ScoreNodle*& first)
+int findBestScore(ProjNodle*& first)
 {
 	if (first == nullptr)
 	{
 		std::cout << "liste vide" << std::endl;
 		return -1;
 	}
-	int bestScore = first->score;
-	ScoreNodle* current = first->next;
+	int bestScore = first->dmg;
+	ProjNodle* current = first->next;
 	while (current != nullptr)
 	{
-		if (current->score > bestScore)
+		if (current->dmg > bestScore)
 		{
-			bestScore = current->score;
+			bestScore = current->dmg;
 		}
 		current = current->next;
 	}
@@ -76,27 +82,27 @@ int findBestScore(ScoreNodle*& first)
 	return bestScore;
 }
 
-void remooveScore(int score, ScoreNodle*& first)
+void remooveScore(int score, ProjNodle*& first)
 {
 	if (first == nullptr)
 	{
 		std::cout << "liste vide" << std::endl;
 		return;
 	}
-	if (first->score == score)
+	if (first->dmg == score)
 	{
-		ScoreNodle* temp = first;
+		ProjNodle* temp = first;
 		first = first->next;
 		delete temp;
 		std::cout << "score supprime : " << score << std::endl;
 		return;
 	}
-	ScoreNodle* current = first;
+	ProjNodle* current = first;
 	while (current->next != nullptr)
 	{
-		if (current->next->score == score)
+		if (current->next->dmg == score)
 		{
-			ScoreNodle* temp = current->next;
+			ProjNodle* temp = current->next;
 			current->next = current->next->next;
 			delete temp;
 			std::cout << "score supprime : " << score << std::endl;
@@ -107,25 +113,25 @@ void remooveScore(int score, ScoreNodle*& first)
 	std::cout << "score non trouve" << std::endl;
 }
 
-void drawAll(ScoreNodle*& first)
+void drawAll(ProjNodle*& first)
 {
 	std::cout << "======= Draw All liste ======= " << std::endl;
-	ScoreNodle* current = first;
+	ProjNodle* current = first;
 	while (current != nullptr)
 	{
-		std::cout << "score : " << current->score << std::endl;
+		std::cout << "score : " << current->dmg << std::endl;
 		current = current->next;
 	}
 }
 
-ScoreNodle* findScore(int score, ScoreNodle*& first)
+ProjNodle* findScore(int score, ProjNodle*& first)
 {
-	ScoreNodle* current = first;
+	ProjNodle* current = first;
 	while (current != nullptr)
 	{
-		if (current->score == score)
+		if (current->dmg == score)
 		{
-			std::cout << "score trouve : " << current->score << std::endl;
+			std::cout << "score trouve : " << current->dmg << std::endl;
 			return current;
 		}
 		current = current->next;
@@ -133,21 +139,21 @@ ScoreNodle* findScore(int score, ScoreNodle*& first)
 	std::cout << "score non trouve" << std::endl;
 }
 
-ScoreNodle* remooveFirst(ScoreNodle*& first)
+ProjNodle* remooveFirst(ProjNodle*& first)
 {
 	if (first == nullptr)
 	{
 		std::cout << "liste vide" << std::endl;
 		return nullptr;
 	}
-	ScoreNodle* temp = first;
+	ProjNodle* temp = first;
 	first = first->next;
-	std::cout << "score supprime : " << temp->score << std::endl;
+	std::cout << "score supprime : " << temp->dmg << std::endl;
 	delete temp;
 	return first;
 }
 
-void remooveAll(ScoreNodle*& first)
+void remooveAll(ProjNodle*& first)
 {
 	while (first != nullptr)
 	{
@@ -156,50 +162,60 @@ void remooveAll(ScoreNodle*& first)
 	std::cout << "liste vide" << std::endl;
 }
 
-void testListe()
+void addProj(Proj& projs)
 {
-	ScoreNodle* first = nullptr;
-	addFront(10, first);
-	addFront(20, first);
-	addFront(30, first);
+	ProjNodle* newNode = new ProjNodle;
+	newNode->dmg = 10;
+	newNode->next = projs.begin;
+	projs.begin = newNode;
+	projs.nbProj++;
+}
 
-	drawAll(first);
-	enter();
+void removeProj(Proj& projs)
+{
+	if (projs.begin == nullptr)
+	{
+		std::cout << "liste vide" << std::endl;
+		return;
+	}
+	ProjNodle* temp = projs.begin;
+	projs.begin = projs.begin->next;
+	delete temp;
+	projs.nbProj--;
+}
 
-	addBack(40, first);
-	drawAll(first);
-	size(first);
-	enter();
+void testProj()
+{
+	Proj projs;
+	addProj(projs);
+	addProj(projs);
+	addProj(projs);
+	addProj(projs);
+	addProj(projs);
+	addProj(projs);
 
-	findScore(20, first);
-	findBestScore(first);
-	enter();
+	std::cout << "nombre de projectiles : " << projs.nbProj << std::endl;
 
-	remooveFirst(first);
-	drawAll(first);
-	remooveScore(10, first);
-	drawAll(first);
-	enter();
+	removeProj(projs);
+	removeProj(projs);
 
-	remooveAll(first);
+	std::cout << "nombre de projectiles : " << projs.nbProj << std::endl;
 
-	drawAll(first);
-	enter();
 }
 
 /*Question 1
 Pourquoi avons-nous besoin d'un pointeur next ?
-pour acceder au prochaine element de la liste 
+pour acceder au prochaine element de la liste
 Question 2
-Pourquoi le premier élément de la liste doit-il être 
+Pourquoi le premier élément de la liste doit-il être
 conservé dans une variable particulière ?
-afin de pouvoir acceder a la liste et de ne pas perdre le premier element de la liste car .next pointesur le prochaine element de la liste							
+afin de pouvoir acceder a la liste et de ne pas perdre le premier element de la liste car .next pointesur le prochaine element de la liste
 Question 3
 Que représente :
 nullptr
 que le poiteur est null qu'il est pas initialiser et qu'il ne pointe sur rien
 Question 4
-Que se passe-t-il si vous oubliez de supprimer un élément 
+Que se passe-t-il si vous oubliez de supprimer un élément
 créé avec new ?
 fuite de memoire car l'element n'est pas supprimer de la memoire et donc il reste dans la memoire et prend de la place inutilement
 Question 5

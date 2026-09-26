@@ -1,13 +1,17 @@
 #include "iostream.h"
 #include "refConstFonc.h"
-#include "listeChainee.h"
-#include <iostream>
+//#include "listeChainee.h"
+#include "stringarrayvector.hpp"
+#include "projchaine.hpp"
+#include "chaneEnnemi.hpp"
 
-typedef enum Cours {
+#include <iostream>
+enum Cours {
 	IOSTREAM = 1,
 	REFCONSTFONC = 2,
-	LISTECHAINEE = 3
-}Cours;
+	LISTECHAINEE = 3,
+	STRING = 4,
+};
 
 
 
@@ -21,7 +25,8 @@ int main()
 	{
 		std::cout << "quel cours : \n" 
 			<< "iostream : 1 \n"
-			<< "refConstFonc : 2"<< std::endl;
+			<< "refConstFonc : 2 \n"
+			<< "liste chainee" << std::endl;
 		std::cin >> cours;
 
 		if (cours == IOSTREAM)
@@ -89,8 +94,33 @@ int main()
 		}
 		else if (cours == LISTECHAINEE)
 		{
-			testListe();
+			//testListe();
 			cours = 0;
+		}
+		else if (cours == STRING)
+		{
+			allexo2();
+		}
+		else if (cours == STRING + 1)
+		{
+			testProj();
+		}
+		else if (cours == STRING + 2)
+		{
+			int exo;
+			std::cin >> exo;
+			if (exo == 1)
+			{
+				testEnnemi();
+			}
+			else if (exo == 2)
+			{
+				testEnnemiVector();
+			}
+			else
+			{
+				cours = 0;
+			}
 		}
 		else
 		{

@@ -5,6 +5,7 @@
 #include "components/rigid_body2d.h"
 #include <SFML/Window/Keyboard.hpp>
 #include "../utils/texture_factory.h"
+#include "components/geometry.h"
 
 void shootBall(Registry& registry, int ballId, Entity self)
 {
@@ -17,16 +18,10 @@ void shootBall(Registry& registry, int ballId, Entity self)
 
     Entity ball = registry.createEntity();
     registry.addComponent<Transform2D>(ball).setPosition( spawnPose);
-    static sf::Texture ballTex;
-    if (!ballTex.loadFromFile("assets/balle.png"))
-    {
-        ballTex = TextureFactory::createCheckerboard({ 32,  32 }, sf::Color(255, 0, 255), sf::Color(0, 0, 0)); // as retirer quand j'aurais le roussource manager 
-    }
-    registry.addComponent<SpriteComponent>(ball, ballTex, 1);
+	registry.addComponent<Geometry>(ball, Geometry::CircleData{ 16.f, { sf::Color(255, 0, 0), sf::Color::Transparent, 0.f, "ball" } }, 1);
     auto& rbBall = registry.addComponent<RigidBody2D>(ball);
     auto& colBall = registry.addComponent<Collider2D>(ball, Collider2D::makeCircle(16.f));
     colBall.restitution = 0.5f;
-    colBall.offset = { 16.f, 16.f };
     rbBall.mass = 0.5f;
     rbBall.applyImpulse({ 50  + rbPlayer.velocity.x * 2 , 0 + rbPlayer.velocity.y * 2 });
  
@@ -34,7 +29,6 @@ void shootBall(Registry& registry, int ballId, Entity self)
     std::snprintf(ballName, sizeof(ballName), "ball %d", ballId); 
     registry.addComponent<NameComponent>(ball, ballName);
 
-    printf("test1234");
 }
 
 class PlayerBehavior : public IBehavior {

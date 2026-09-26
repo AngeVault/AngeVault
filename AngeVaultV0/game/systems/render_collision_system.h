@@ -44,6 +44,7 @@ public:
 					rect.setFillColor(sf::Color::Transparent);
 					rect.setOutlineColor(sf::Color::Red);
 					rect.setOutlineThickness(1);
+					rect.setRotation(t.getRotation());
 					m_window.draw(rect);
 				}
 				else if (c.type() == Collider2D::ShapeType::Polygon)

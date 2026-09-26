@@ -39,7 +39,7 @@ void Game::run() {
         handleEvents();
         m_window.clear(sf::Color::Black); 
         update(dt);
-        render();                          // ← display APRÈS
+        render();                     
     }
     m_systems.stop(m_registry);
     std::cout << "[GAME LOOP] Termine.\n";
