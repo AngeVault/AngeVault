@@ -30,4 +30,5 @@ add_subdirectory(AngeVaultV0/game)
 add_subdirectory(AngeVaultV0/cours)
 # add_subdirectory(AngeVaultV0/editor)  qt
 
+
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Game)

@@ -1045,4 +1045,4 @@ dkms.conf
 *.dis
 
 # retire les cours inutile pour angeVault 
-# cours/
+cours/

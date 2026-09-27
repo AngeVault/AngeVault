@@ -18,7 +18,7 @@ void shootBall(Registry& registry, int ballId, Entity self)
 
     Entity ball = registry.createEntity();
     registry.addComponent<Transform2D>(ball).setPosition( spawnPose);
-	registry.addComponent<Geometry>(ball, Geometry::CircleData{ 16.f, { sf::Color(255, 0, 0), sf::Color::Transparent, 0.f, "ball" } }, 1);
+	registry.addComponent<Geometry>(ball, Geometry::CircleData{ 16.f, { sf::Color(255, 255, 255), sf::Color::Transparent, 0.f, "ball" } }, 1);
     auto& rbBall = registry.addComponent<RigidBody2D>(ball);
     auto& colBall = registry.addComponent<Collider2D>(ball, Collider2D::makeCircle(16.f));
     colBall.restitution = 0.5f;
