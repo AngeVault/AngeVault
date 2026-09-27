@@ -102,6 +102,8 @@ private:
 	sf::Texture dummyTexture;
     sf::Sprite m_sprite{ dummyTexture };
 	sf::RectangleShape m_rect;
+	sf::CircleShape m_circle;
+	sf::ConvexShape m_polygon;
     std::unordered_map<std::string, sf::Texture> m_textureCache;
 
     sf::Texture& resolveTexture(const std::string& id) 
