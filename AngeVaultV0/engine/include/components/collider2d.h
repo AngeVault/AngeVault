@@ -5,7 +5,7 @@
 
 struct Collider2D {
 
-    // types de formes
+    // types de formes !
     enum class ShapeType { Box, Circle, Ellipse, Capsule, Polygon };
 
     // Precision pour les colliders générés depuis une texture 
